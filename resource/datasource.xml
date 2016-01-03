@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${auxiliary_mysql_jdbc_driver}" />
+		<property name="url" value="${auxiliary_mysql_jdbc_url}" />
+		<property name="username" value="${auxiliary_mysql_jdbc_user}" />
+		<property name="password" value="${auxiliary_mysql_jdbc_password}"/>
+		<property name="maxActive" value="${auxiliary_mysql_jdbc_pool_size}" />
+		<property name="maxIdle" value="${auxiliary_mysql_jdbc_pool_maxIdle}" />
+		<property name="maxWait" value="${auxiliary_mysql_jdbc_pool_maxWait}" />
+		<property name="validationQuery" value="${auxiliary_mysql_jdbc_validationQuery}" />
+		<property name="testWhileIdle" value="${auxiliary_mysql_jdbc_testWhileIdle}" />
+	</bean>
+</beans>

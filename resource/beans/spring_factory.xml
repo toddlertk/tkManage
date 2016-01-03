@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"  
+        xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"  
+        xmlns:oxm="http://www.springframework.org/schema/oxm"  
+        xmlns:mvc="http://www.springframework.org/schema/mvc"  
+        xsi:schemaLocation="http://www.springframework.org/schema/mvc  
+                http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd  
+                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd  
+                http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd  
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
+                http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
+	
+	<bean id="msgHandlerFactory" class="tk.weixin.core.msg.factory.MsgHandlerFactory">
+	       <property name="msgHandlerMap">
+                         <map>
+                                  <entry key="text">
+                                        <bean class="tk.weixin.core.msg.handler.MsgTextHandler"></bean>
+                                  </entry>       
+                                  <entry key="image">
+                                        <bean class="tk.weixin.core.msg.handler.MsgImageHandler"></bean>
+                                  </entry>      
+                                  <entry key="voice">
+                                        <bean class="tk.weixin.core.msg.handler.MsgVoiceHandler"></bean>
+                                  </entry>          
+                                  <entry key="video">
+                                        <bean class="tk.weixin.core.msg.handler.MsgVideoHandler"></bean>
+                                  </entry>         
+                                  <entry key="shortvideo">
+                                        <bean class="tk.weixin.core.msg.handler.MsgVideoHandler"></bean>
+                                  </entry>          
+                                  <entry key="location">
+                                        <bean class="tk.weixin.core.msg.handler.MsgLocationHandler"></bean>
+                                  </entry>        
+                                  <entry key="link">
+                                        <bean class="tk.weixin.core.msg.handler.MsgLinkHandler"></bean>
+                                  </entry>          
+                                  <entry key="event">
+                                        <bean class="tk.weixin.core.msg.handler.MsgTextHandler"></bean>
+                                  </entry>                                                
+                         </map>
+                </property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//WebContent/admin/modulerole/edit.jsp=UTF-8
+encoding//WebContent/admin/modulerole/list.jsp=UTF-8
+encoding//WebContent/admin/modulerole/view.jsp=UTF-8
+encoding//WebContent/admin/role/add.jsp=UTF-8
+encoding//WebContent/admin/role/edit.jsp=UTF-8
+encoding//WebContent/admin/role/list.jsp=UTF-8
+encoding//WebContent/admin/role/rulist.jsp=UTF-8
+encoding//WebContent/admin/role/userList.jsp=UTF-8
+encoding//WebContent/admin/user/add.jsp=UTF-8
+encoding//WebContent/admin/user/edit.jsp=UTF-8
+encoding//WebContent/admin/user/list.jsp=UTF-8
+encoding//WebContent/basepage/pager.jsp=UTF-8
+encoding//WebContent/index.jsp=UTF-8
+encoding//WebContent/login.jsp=UTF-8
+encoding/<project>=UTF-8
