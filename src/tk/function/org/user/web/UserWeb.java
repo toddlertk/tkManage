@@ -135,8 +135,8 @@ public class UserWeb extends BasePage {
 				requestEntry.setAttribute("result", "用户密码输入有误！");
 				return null;
 			}
-			if(userPws.trim().length() < 8){
-				requestEntry.setAttribute("result", "用户密码不可少于8位");
+			if(userPws.trim().length() < 6){
+				requestEntry.setAttribute("result", "用户密码不可少于6位");
 				return null;
 			}
 			user = new User();
@@ -146,8 +146,8 @@ public class UserWeb extends BasePage {
 			user.setUserStatus(UserStatusConstraints.USER_STATUS_ACTIVED);
 			HibernateTemplateExt.getInstance().save(user);
 			HibernateTemplateExt.getInstance().flush();
+			requestEntry.setAttribute("result", "SUCCESS");
 		}
-		requestEntry.setAttribute("result", "SUCCESS");
 		requestEntry.setAttribute("url", "admin/user/list/user-create.od?act=list");
 		return null;
 	}

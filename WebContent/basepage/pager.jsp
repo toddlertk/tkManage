@@ -1,4 +1,4 @@
-﻿</div>
+﻿
 <script type="text/javascript">
 String.prototype.getQuery = function(name)
 {
@@ -39,8 +39,7 @@ function pre(){
 }
 </script>
 <div class="ui divider"></div>
-<div class="pagetMargin">&nbsp;</div>
-<div class="pagerBar">
+<div class="ui column">
 	<table>
 		<tr>
 			<td>总数:<c:out value="${pageCount}" />&nbsp;&nbsp; 页数:<c:out
@@ -75,4 +74,5 @@ function pre(){
 				</ul></td>
 		</tr>
 	</table>
+</div>
 </div>

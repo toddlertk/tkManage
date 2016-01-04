@@ -5,7 +5,7 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
 %>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>UI/components/reset.min.css">
+	<%-- <link rel="stylesheet" type="text/css" href="<%=basePath %>UI/components/reset.min.css">
  	<link rel="stylesheet" type="text/css" href="<%=basePath %>UI/components/site.min.css">
   	<link rel="stylesheet" type="text/css" href="<%=basePath %>UI/components/grid.min.css">
 
@@ -23,19 +23,26 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
   	
   	<link rel="stylesheet" type="text/css" href="<%=basePath %>UI/components/form.min.css">
   	<link rel="stylesheet" type="text/css" href="<%=basePath %>UI/components/form.min.js">
+  	<link rel="stylesheet" type="text/css" href="<%=basePath %>UI/components/validate-form.js">
 
     <link rel="stylesheet/less" type="text/css" href="<%=basePath %>UI/components/dropdown.less" />
     
   	<!--- Example Libs -->
  	<!--  <script src="../assets/library/jquery.min.js"></script>
   	<script src="../assets/library/iframe-content.js"></script> -->
-  	<script src="<%=basePath %>UI/js/show-examples.js"></script>
-  	<script src="<%=basePath %>UI/js/jquery.min.js"></script>
   	<script src="<%=basePath %>UI/js/iframe-content.js"></script>
   	<script type="text/javascript" src="<%=basePath %>UI/components/popup.min.js"></script>
-
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>UI/css/semantic.css">
+	<script src="<%=basePath %>UI/js/semantic.js"></script>
+  	<script src="<%=basePath %>UI/js/show-examples.js"></script> --%>
+  	<script src="<%=basePath %>UI/js/show-examples.js"></script>
+  	<script src="<%=basePath %>UI/js/jquery.min.js"></script>
+  	<script src="../assets/library/iframe-content.js"></script>
+  	<script src="<%=basePath %>UI/js/iframe-content.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>UI/css/semantic.css">
+	<script src="<%=basePath %>UI/js/semantic.js"></script>
   	<!--- Component JS -->
-  	<script type="text/javascript" src="<%=basePath %>UI/components/transition.min.js"></script>
-  	<%-- <script type="text/javascript" src="<%=basePath %>UI/components/less.min.js"></script> --%>
-  	<script type="text/javascript" src="<%=basePath %>UI/components/dropdown.min.js"></script>
+  	<%-- <script type="text/javascript" src="<%=basePath %>UI/components/transition.min.js"></script>
+  	<script type="text/javascript" src="<%=basePath %>UI/components/less.min.js"></script>
+  	<script type="text/javascript" src="<%=basePath %>UI/components/dropdown.min.js"></script> --%>
   	

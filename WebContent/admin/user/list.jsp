@@ -25,10 +25,9 @@
        
      });
 </script>
-<div>
 <h3 class="ui dividing header">用户列表</h3>
 <div class="ui two column relaxed grid">
-	<div class="column left">
+	<div class="column">
 		<div class="ui labeled input">
 			<a class="ui label">用户 </a> <input type="text" name="searchUserName"
 				id="searchUserName" value="${searchUserName}" placeholder="用户">
@@ -37,11 +36,13 @@
 			<a class="ui label">账号 </a> <input type="text" name="searchUserId"
 				id="searchUserId" value="${searchUserId}" placeholder="账号">
 		</div>
+	</div>
+	<div class="column">
 		<a href="javascript:searchUser()" class="blue ui button"><span>查询</span></a>
 		<a href="<%=basePath%>admin/user/add/user-create.od?act=preAdd"
 			class="green ui button"><span>注册</span></a>
 	</div>
-	<table class="ui celled right aligned table">
+	<table class="ui celled table">
    	<thead>
    	  	<tr>
    	  		<th>账号</th>
@@ -63,6 +64,5 @@
 	</c:forEach>
    	</tbody>
 </table>
-</div>
 </div>
 <%@ include file="/basepage/pager.jsp"%>
