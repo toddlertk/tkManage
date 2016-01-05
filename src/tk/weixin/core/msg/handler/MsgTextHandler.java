@@ -49,11 +49,15 @@ public class MsgTextHandler extends AbstractMsgHandler {
 				"<FuncFlag>0</FuncFlag>"+  
 				"</xml>";         
 		String resultStr = null;
-		if(null!=content&&!content.equals(""))  
-		{  
-			msgType = "text";  
-			String contentStr = "Welcome to wechat world!";  
-			resultStr = textTpl.format(textTpl, fromUserName, toUserName, time, msgType, contentStr);  
+		if(null!=content&&!content.equals("")){  
+			String contentStr = null;
+			if(content.equals("tk")){
+				contentStr = "http://120.24.63.30/TKManage/depart/sh2p/tk2y-kd92h.od?cd=" + fromUserName;  
+			}else{
+				contentStr = "success"; 
+			}
+			msgType = "text"; 
+			resultStr = String.format(textTpl, fromUserName, toUserName, time, msgType, contentStr);  
 		}
 		return resultStr;
 	}

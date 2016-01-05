@@ -16,4 +16,6 @@
 	<bean id="loginWeb" class="tensin.function.auth.web.LoginWeb"></bean>
 	<bean id="ruleWeb" class="tensin.function.rule.web.RuleManagerWeb"></bean> -->
 	
+	<bean id="tk2yWeb" class="tk.function.org.department.web.DepartmentWeb"></bean>
+	
 </beans>

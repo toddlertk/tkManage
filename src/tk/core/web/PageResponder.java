@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import tk.core.context.SpringBeanLoader;
 import tk.core.db.SQL;
 import tk.core.db.template.HibernateTemplateExt;
+import tk.entities.org.User;
 import tk.utils.StringUtils;
 
 public class PageResponder {
@@ -49,12 +50,11 @@ public class PageResponder {
 				if(ignoreAuthFlag.toUpperCase().equals("N")){
 
 					
-					if(!beanName.equals("login")&&!checkAuthenticate(requestEntry)
-							&&!(beanName.equals("kfCustomer"))){
+					if(!beanName.equals("login") && !checkAuthenticate(requestEntry)){
 						return checkAuthError(requestEntry);
 					}
-					//锟斤拷证权锟斤拷
-					if(!beanName.equals("login")&&!checkPrivilege(requestEntry)){
+					//校验权限
+					if(!beanName.equals("login") && !checkPrivilege(requestEntry)){
 						return checkPrivilegeError(requestEntry);
 					}
 					basePage.beforeExcuteMethod(requestEntry);
@@ -99,14 +99,13 @@ public class PageResponder {
 	
 	private static boolean checkAuthenticate(RequestEntry requestEntry){
 		String userId = requestEntry.getUserId();
-		/*if(StringUtils.isNullOrEmpty(userId)){
+		if(StringUtils.isNullOrEmpty(userId)){
 			User user = HibernateTemplateExt.getInstance().get(User.class, "guest");
 			if(user != null){
 				userId = user.getUserId();
 				requestEntry.setSessionAttribute("userId", user.getUserId());
-				
 			}
-		}*/
+		}
 		return !StringUtils.isNullOrEmpty(userId);
 	}
 	
