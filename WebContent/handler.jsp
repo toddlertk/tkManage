@@ -3,7 +3,6 @@
  
 <%
 	//WeiXinHandler为内部类不能使用非final类型的对象
-
 	WXHandler t = new WXHandler(request , response);
 	t.valid();
 %>

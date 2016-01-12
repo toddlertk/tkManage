@@ -3,6 +3,7 @@ package tk.weixin.core.entry;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,13 +21,19 @@ import tk.weixin.core.msg.factory.MsgHandlerFactory;
 
 public class WXHandler {
 	final String TOKEN = "toddler";
-	final HttpServletRequest final_request ;
-	final HttpServletResponse final_response ;
+	HttpServletRequest final_request ;
+	HttpServletResponse final_response ;
 
 	public WXHandler(HttpServletRequest request , HttpServletResponse response){
-
 		final_request = request;
 		final_response = response;
+		try {
+			final_request.setCharacterEncoding("UTF-8");
+			final_response.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void valid() {
@@ -40,7 +47,7 @@ public class WXHandler {
 				this.print("error");
 			}
 		}
-		String url = "https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token=" + TOKEN;
+		//String url = "https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token=" + TOKEN;
 	}
 	
 	public boolean checkSignature() {
@@ -103,12 +110,12 @@ public class WXHandler {
 
 	public void responseMsg(){  
 		String postStr=null;  
-		try{  
-			postStr=this.readStreamParameter(final_request.getInputStream());  
+		try{   
+			postStr=this.readStreamParameter(final_request.getInputStream()); 
 		}catch(Exception e){  
 			e.printStackTrace();  
 		}  
-		System.out.println(postStr);  
+		System.out.println(postStr);
 		if (null!=postStr&&!postStr.isEmpty()){  
 			Document document=null;  
 			try{  
@@ -122,7 +129,6 @@ public class WXHandler {
 			}  
 			Element root=document.getRootElement();  
 			String MsgType = root.elementTextTrim("MsgType");
-			System.out.println(MsgType);
 			AbstractMsgHandler handler = MsgHandlerFactory.getInstance().getMsgHandler(MsgType);
 			if(handler != null){
 				this.print(handler.recv(root)); 
@@ -180,9 +186,9 @@ public class WXHandler {
 		StringBuilder buffer = new StringBuilder();  
 		BufferedReader reader=null;  
 		try{  
-			reader = new BufferedReader(new InputStreamReader(in));  
+			reader = new BufferedReader(new InputStreamReader(in , "utf-8"));  
 			String line=null;  
-			while((line = reader.readLine())!=null){  
+			while((line = reader.readLine())!=null){
 				buffer.append(line);  
 			}  
 		}catch(Exception e){  

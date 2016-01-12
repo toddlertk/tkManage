@@ -16,7 +16,8 @@ import tk.entities.org.DepartmentUser;
 import tk.utils.StringUtils;
 
 public class DepartmentWeb extends BasePage{
-	
+
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	/**
 	 * 部门读取和配置
 	 * @param requestEntry
@@ -25,56 +26,59 @@ public class DepartmentWeb extends BasePage{
 	public ResponseResult kd92h(RequestEntry requestEntry){
 		
 		String act = requestEntry.getParameter("ai");
-		String cd = requestEntry.getParameter("cd");
+		String openId = requestEntry.getParameter("openId");
 		
 		if(!StringUtils.isNullOrEmpty(act)){
 			if(act.equals("ads")){
 				String departmentId = requestEntry.getParameter("departmentId");
-				String openId = requestEntry.getParameter("openId");
 				String userId = requestEntry.getParameter("userId");
 				DepartmentUser du = new DepartmentUser();
+				List <?> list1 = HibernateTemplateExt.getInstance().find(new SQL("from DepartmentUser o where o.openId=?" , openId));
+				if(list1.size() > 0){
+					du = (DepartmentUser) list1.get(0);
+				}
 				du.setAccountId(userId);
 				du.setOpenId(openId);
 				du.setDepartmentId(departmentId);
 				HibernateTemplateExt.getInstance().save(du);
 				HibernateTemplateExt.getInstance().flush();
 				requestEntry.setAttribute("result", "SUCCESS");
-				requestEntry.setAttribute("url", "depart/shGd/tk2y-kd92h.od?ai=rd&duId=" + du.getDuId());
+				requestEntry.setAttribute("url", "ph/depart/tk2y-kd92h.od?ai=rd&duId=" + du.getDuId());
 				return null;
 			} else if(act.equals("dt")){
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String date = sdf.format(new Date());
 				String Gs = requestEntry.getParameter("Gs");
-				String userId = requestEntry.getParameter("userId");
-				String answer = requestEntry.getParameter("answer");
-				String departId = requestEntry.getParameter("departmentId");
-				String answerId = Gs;
-				WxAnswer wxanswer = new WxAnswer();
-				SQL sql = SQL.begin().sql("from WxAnswer o where o.userId=? and o.answerId=?" ,userId , answerId).end();
-				List <?> list = HibernateTemplateExt.getInstance().find(sql);
-				if(list != null && list.size() > 0){
-					wxanswer = (WxAnswer)list.get(0);
-				}
-				wxanswer.setAnswer(answer);
-				wxanswer.setUserId(userId);
-				wxanswer.setDepartmentId(departId);
-				wxanswer.setAnswerId(answerId);
-				wxanswer.setCreateTime(new Timestamp(new Date().getTime()));
+				
 				boolean flag = false;
 				if(Gs.equals("WHio7GS7aA3fcD")){
-					if(date.compareTo("2016-01-08") <= 0){
+					if(date.compareTo("2016-01-08 20") <= 0){
 						flag = true;
 					}
 				}else if(Gs.equals("WHioS6J3I0dksD")){
-					if(date.compareTo("2016-01-15") <= 0){
+					if(date.compareTo("2016-01-15 20") <= 0){
 						flag = true;
 					}
 				}else if(Gs.equals("WHiK8o6Ld4PfcD")){
-					if(date.compareTo("2016-01-22") <= 0){
+					if(date.compareTo("2016-01-22 20") <= 0){
 						flag = true;
 					}
 				}
 				if(flag){
+					String userId = requestEntry.getParameter("userId");
+					String answer = requestEntry.getParameter("answer");
+					String departId = requestEntry.getParameter("departmentId");
+					String answerId = Gs;
+					WxAnswer wxanswer = new WxAnswer();
+					SQL sql = SQL.begin().sql("from WxAnswer o where o.userId=? and o.answerId=?" ,userId , answerId).end();
+					List <?> list = HibernateTemplateExt.getInstance().find(sql);
+					if(list != null && list.size() > 0){
+						wxanswer = (WxAnswer)list.get(0);
+					}
+					wxanswer.setAnswer(answer);
+					wxanswer.setUserId(userId);
+					wxanswer.setDepartmentId(departId);
+					wxanswer.setAnswerId(answerId);
+					wxanswer.setCreateTime(new Timestamp(new Date().getTime()));
 					HibernateTemplateExt.getInstance().saveOrUpdate(wxanswer);
 					requestEntry.setAttribute("wxanswer", wxanswer);
 					requestEntry.setAttribute("Gs", Gs);
@@ -83,20 +87,19 @@ public class DepartmentWeb extends BasePage{
 				}
 				return null;
 			} else if(act.equals("dr")){
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String date = sdf.format(new Date());
 				String Gs = requestEntry.getParameter("Gs");
 				boolean flag = false;
 				if(Gs.equals("WHio7GS7aA3fcD")){
-					if(date.compareTo("2016-01-08") <= 0){
+					if(date.compareTo("2016-01-08 20") <= 0){
 						flag = true;
 					}
 				}else if(Gs.equals("WHioS6J3I0dksD")){
-					if(date.compareTo("2016-01-15") <= 0){
+					if(date.compareTo("2016-01-15 20") <= 0){
 						flag = true;
 					}
 				}else if(Gs.equals("WHiK8o6Ld4PfcD")){
-					if(date.compareTo("2016-01-22") <= 0){
+					if(date.compareTo("2016-01-22 20") <= 0){
 						flag = true;
 					}
 				}else{
@@ -105,19 +108,20 @@ public class DepartmentWeb extends BasePage{
 				requestEntry.setAttribute("flag", flag);
 				requestEntry.setAttribute("Gs", Gs);
 
-			} else{
-			
+			} else if(act.equals("rd")){
 				String duId = requestEntry.getParameter("duId");
 				DepartmentUser du = HibernateTemplateExt.getInstance().get(DepartmentUser.class, duId);
 				requestEntry.setAttribute("du", du);
-				Department depart = HibernateTemplateExt.getInstance().get(Department.class	, du.getDepartmentId());
-				requestEntry.setAttribute("depart", depart);
-				return null;
+			}
+		}else{
+			List <?> list1 = HibernateTemplateExt.getInstance().find(new SQL("from DepartmentUser o where o.openId=?" , openId));
+			if(list1.size() > 0){
+				requestEntry.setAttribute("du", list1.get(0));
 			}
 		}
 		List <?> list = HibernateTemplateExt.getInstance().find(new SQL("from Department"));
 		requestEntry.setAttribute("list", list);
-		requestEntry.setAttribute("openId", cd);
+		requestEntry.setAttribute("openId", openId);
 		return null;
 	}
 }
