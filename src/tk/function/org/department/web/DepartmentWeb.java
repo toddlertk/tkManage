@@ -32,6 +32,7 @@ public class DepartmentWeb extends BasePage{
 			if(act.equals("ads")){
 				String departmentId = requestEntry.getParameter("departmentId");
 				String userId = requestEntry.getParameter("userId");
+				String userName = requestEntry.getParameter("userName");
 				DepartmentUser du = new DepartmentUser();
 				List <?> list1 = HibernateTemplateExt.getInstance().find(new SQL("from DepartmentUser o where o.openId=?" , openId));
 				if(list1.size() > 0){
@@ -39,6 +40,7 @@ public class DepartmentWeb extends BasePage{
 				}
 				du.setAccountId(userId);
 				du.setOpenId(openId);
+				du.setUserName(userName);
 				du.setDepartmentId(departmentId);
 				HibernateTemplateExt.getInstance().save(du);
 				HibernateTemplateExt.getInstance().flush();

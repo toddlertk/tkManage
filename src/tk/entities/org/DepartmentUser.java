@@ -20,6 +20,7 @@ public class DepartmentUser implements java.io.Serializable {
 	private String departmentId;
 	private String openId;
 	private String accountId;
+	private String userName;
 
 	// Constructors
 
@@ -73,6 +74,15 @@ public class DepartmentUser implements java.io.Serializable {
 
 	public void setAccountId(String accountId) {
 		this.accountId = accountId;
+	}
+
+	@Column(name = "USER_NAME")
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

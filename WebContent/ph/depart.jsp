@@ -68,6 +68,11 @@ function submitForm(){
 				minLength : 2,
 				maxLength : 30,
 				type : "string"
+			},
+			userName : {
+				minLength : 2,
+				maxLength : 30,
+				type : "string"
 			}
 
 		};
@@ -84,6 +89,10 @@ function submitForm(){
         <div class="form_ctrl input_text" id="5" title="工号">
             <label class="ctrl_title">工号</label>
             <input type="text" name="userId" value="" id="userId" placeholder="请输入您的工号">
+        </div>
+        <div class="form_ctrl input_text" id="5" title="姓名">
+            <label class="ctrl_title">姓名</label>
+            <input type="text" name="userName" value="" id="userName" placeholder="请输入您的姓名">
         </div>
         <div class="form_ctrl form_select" id="9" title="性别">
             <label class="ctrl_title">部门</label>
@@ -110,6 +119,10 @@ function submitForm(){
 					<tr>
 						<td width="10%">工号</td>
 						<td><span>${du.accountId}</span></td>
+					</tr>
+					<tr>
+						<td width="10%">姓名</td>
+						<td><span>${du.userName}</span></td>
 					</tr>
 					<tr>
 						<td>部门</td>
