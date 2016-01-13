@@ -96,8 +96,8 @@ function submitForm(){
         </div>
         <div class="form_ctrl form_select" id="9" title="性别">
             <label class="ctrl_title">部门</label>
-            <select name="departmentId" num="1">
-				<c:forEach var="p" items="${list}"><option value="#">--请选择--</option>
+            <select name="departmentId" num="1"><option value="#">--请选择--</option>
+				<c:forEach var="p" items="${list}">
 					<option value="${p.departmentId }">${p.departmentName}</option>
 				</c:forEach>
             </select>
@@ -114,7 +114,7 @@ function submitForm(){
 				<tbody>
 					<tr>
 						<td width="10%">绑定结果</td>
-						<td><span>绑定成功，预祝抽中大奖</span></td>
+						<td><span>绑定成功！</span></td>
 					</tr>
 					<tr>
 						<td width="10%">工号</td>
@@ -128,7 +128,7 @@ function submitForm(){
 						<td>部门</td>
 						<td><span>
 					<c:forEach var="p" items="${list}">
-					<c:if test="${p.departmentId=du.departmentId }">${p.departmentName}</c:if>
+					<c:if test="${p.departmentId==du.departmentId }">${p.departmentName}</c:if>
 					</c:forEach></span></td>
 					</tr>
 				</tbody>
