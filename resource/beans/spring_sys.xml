@@ -17,5 +17,6 @@
 	<bean id="ruleWeb" class="tensin.function.rule.web.RuleManagerWeb"></bean> -->
 	
 	<bean id="tk2yWeb" class="tk.function.org.department.web.DepartmentWeb"></bean>
+	<bean id="awardWeb" class="tk.function.award.web.AwardWeb"></bean>
 	
 </beans>
