@@ -7,10 +7,13 @@ import static org.junit.Assert.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import tk.core.context.SpringBeanLoader;
+import tk.function.award.service.TestThread;
 import tk.weixin.core.msg.AbstractMsgHandler;
 import tk.weixin.core.msg.factory.MsgHandlerFactory;
 
@@ -33,13 +36,10 @@ public class Test {
 			System.out.println(sdf.parse("19700101").getTime());
 			System.out.println(sdf.parse("20151119").getTime() - sdf.parse("19501230").getTime());
 		} catch (ParseException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		
-		
-		
-		
+		TestThread thread = new TestThread();
+		thread.start();
 	}
 
 }
