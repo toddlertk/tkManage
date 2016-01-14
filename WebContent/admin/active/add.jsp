@@ -13,9 +13,6 @@
 	});
 </script>
 <form class="ui form" action="<%=basePath%>redirect/active-create.od?act=create" method="post">
-	<c:if test="${!empty active }">
-		<input type="hidden" name="activeId" id="activeId" value="${active.activeId }" />
-	</c:if>
 	<p class="ui dividing header">注册新用户</p>
 	<div class="two fields">
 		<div class="field">

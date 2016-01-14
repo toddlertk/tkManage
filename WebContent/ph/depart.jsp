@@ -82,7 +82,7 @@ function submitForm(){
 <body>
 <div id="subjects">
     <c:if test="${empty du }">
-    <form id="main_form" action="<%=basePath%>ph/depart/tk2y-kd92h.od?ai=ads" method="post"
+    <form id="main_form" action="<%=basePath%>redirect/tk2y-kd92h.od?ai=ads" method="post"
     	 accept-charset="utf-8" style="padding-bottom: 4em;">
             <input type="hidden" name="openId" value="${openId}" id="openId" >
         <div class="form_ctrl page_head" id="1" title=""><h2>微信绑定工号部门</h2></div>

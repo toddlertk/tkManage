@@ -25,8 +25,8 @@
 			<td ><c:out value="${p.activeName}"></c:out></td>
 			<td >${p.begTime}</td>
 			<td >${p.endTime}</td>
-			<td><a href="<%=basePath%>admin/active/add/active-create.od?act=pre&activeId=${p.activeId}">编辑</a></td>
-			<td><a href="<%=basePath%>admin/active/list/active-create.od?act=drop&activeId=${p.activeId}">结束</a></td>
+			<td><a href="<%=basePath%>admin/active/add/active-create.od?act=pre&activeIndex=${p.activeIndex}">编辑</a></td>
+			<td><a href="<%=basePath%>admin/active/list/active-create.od?act=drop&activeIndex=${p.activeIndex}">结束</a></td>
 	  	</tr>
 	</c:forEach>
    	</tbody>

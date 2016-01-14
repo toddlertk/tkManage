@@ -86,7 +86,7 @@ public class TextDuleService {
 							contentStr = "微信君get不到这个互动~,请检查一下活动ID):!-";
 						}
 						WxActiveScore score = new WxActiveScore();
-						SQL sql = SQL.begin().sql("from WxActiveScore a where a.activeIndex=? , a.openId=?" ,s[0] , fromUserName).end();
+						SQL sql = SQL.begin().sql("from WxActiveScore a where a.activeIndex=? and a.openId=?" ,s[0] , fromUserName).end();
 						List<?> list = HibernateTemplateExt.getInstance().find(sql);
 						if(list != null && list.size() > 0){
 							score = (WxActiveScore)list.get(0);
@@ -106,7 +106,7 @@ public class TextDuleService {
 							score.setScoreText(content);
 							HibernateTemplateExt.getInstance().save(score);
 						}
-						contentStr = "恭喜，投票成功！/n投票活动：" + active.getActiveName() + "\n投票分数：" + score.getScore();
+						contentStr = "恭喜，投票成功！\n投票活动：" + active.getActiveName() + "\n投票分数：" + score.getScore();
 					}catch(Exception e){
 						e.printStackTrace();
 						contentStr = "微信君get不到哇~,请重新再来一次):-";
