@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.apache.commons.net.ntp.TimeStamp;
+import java.sql.Timestamp;
 
 /**
  * WxActiveScore entity. @author MyEclipse Persistence Tools
@@ -24,7 +24,7 @@ public class WxActiveScore implements java.io.Serializable {
 	private String departmentId;
 	private Integer score;
 	private String scoreText;
-	private TimeStamp createTime;
+	private Timestamp createTime;
 
 	// Constructors
 
@@ -100,11 +100,11 @@ public class WxActiveScore implements java.io.Serializable {
 	}
 
 	@Column(name = "CREATE_TIME")
-	public TimeStamp getCreateTime() {
+	public Timestamp getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(TimeStamp createTime) {
+	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
 	}
 

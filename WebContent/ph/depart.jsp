@@ -104,7 +104,7 @@ function submitForm(){
             <div></div>
         </div>
     </form>
-    <div id="bottom_info" style="display: block;" onclick="javascript:submitForm()">提交答案</div>
+    <div id="bottom_info" style="display: block;" onclick="javascript:submitForm()">提交</div>
     </c:if>
 		<c:if test="${!empty du }">
 			<div class="form_ctrl page_head" id="1" title="">

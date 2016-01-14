@@ -14,6 +14,7 @@ import tk.entities.active.WxAnswer;
 import tk.entities.org.Department;
 import tk.entities.org.DepartmentUser;
 import tk.utils.StringUtils;
+import tk.weixin.core.msg.service.TextDuleService;
 
 public class DepartmentWeb extends BasePage{
 
@@ -44,6 +45,7 @@ public class DepartmentWeb extends BasePage{
 				du.setDepartmentId(departmentId);
 				HibernateTemplateExt.getInstance().save(du);
 				HibernateTemplateExt.getInstance().flush();
+				TextDuleService.getInstance().updateDepart(du);
 				requestEntry.setAttribute("result", "SUCCESS");
 				requestEntry.setAttribute("url", "ph/depart/tk2y-kd92h.od?ai=rd&duId=" + du.getDuId());
 				return null;
