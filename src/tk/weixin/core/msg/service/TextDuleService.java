@@ -103,35 +103,42 @@ public class TextDuleService {
 				String []s = content.split("#");
 				if(s.length == 2){
 					try{
-						WxActive active = mapActive.get(Integer.valueOf(s[0]));
+						int index = Integer.valueOf(s[0]) , iScore = Integer.valueOf(s[1]);
+						WxActive active = mapActive.get(index);
 						if(active == null){
 							contentStr = "微信君get不到这个互动~,请检查一下活动ID/玫瑰";
-						}
-						WxActiveScore score = new WxActiveScore();
-						SQL sql = SQL.begin().sql("from WxActiveScore a where a.activeIndex=? and a.openId=?" ,s[0] , fromUserName).end();
-						List<?> list = HibernateTemplateExt.getInstance().find(sql);
-						if(list != null && list.size() > 0){
-							score = (WxActiveScore)list.get(0);
-							score.setActiveIndex(active.getActiveIndex());
-							score.setCreateTime(new Timestamp(new Date().getTime()));
-							score.setDepartmentId(mapDepart.get(fromUserName).getDepartmentId());
-							score.setOpenId(fromUserName);
-							score.setScore(Integer.valueOf(s[1]));
-							score.setScoreText(content);
-							HibernateTemplateExt.getInstance().update(score);
+						}else if(active.getBegTime().compareTo(new Date()) < 0){
+							contentStr = "这个节目暂未开演，请开演后再投票/玫瑰";
+						}else if(active.getEndTime().compareTo(new Date()) > 0){
+							contentStr = "这个节目投票已经结束，不再接受投票/玫瑰";
 						}else{
-							score.setActiveIndex(active.getActiveIndex());
-							score.setCreateTime(new Timestamp(new Date().getTime()));
-							score.setDepartmentId(mapDepart.get(fromUserName).getDepartmentId());
-							score.setOpenId(fromUserName);
-							score.setScore(Integer.valueOf(s[1]));
-							score.setScoreText(content);
-							HibernateTemplateExt.getInstance().save(score);
+							WxActiveScore score = new WxActiveScore();
+							SQL sql = SQL.begin().sql("from WxActiveScore a where a.activeIndex=? and a.openId=?" ,s[0] , fromUserName).end();
+							List<?> list = HibernateTemplateExt.getInstance().find(sql);
+							if(list != null && list.size() > 0){
+								score = (WxActiveScore)list.get(0);
+								score.setActiveIndex(active.getActiveIndex());
+								score.setCreateTime(new Timestamp(new Date().getTime()));
+								score.setDepartmentId(mapDepart.get(fromUserName).getDepartmentId());
+								score.setOpenId(fromUserName);
+								score.setScore(iScore);
+								score.setScoreText(content);
+								HibernateTemplateExt.getInstance().update(score);
+							}else{
+								score.setActiveIndex(active.getActiveIndex());
+								score.setCreateTime(new Timestamp(new Date().getTime()));
+								score.setDepartmentId(mapDepart.get(fromUserName).getDepartmentId());
+								score.setOpenId(fromUserName);
+								score.setScore(iScore);
+								score.setScoreText(content);
+								HibernateTemplateExt.getInstance().save(score);
+							}
+							contentStr = "投票成功！\n节目名称：" + active.getActiveName() + "\n投票分数：" + score.getScore();
 						}
-						contentStr = "投票成功！\n节目名称：" + active.getActiveName() + "\n投票分数：" + score.getScore();
+						
 					}catch(Exception e){
 						e.printStackTrace();
-						contentStr = "微信君get不到哇~,请重新再来一次):-";
+						contentStr = "微信君get不到哇~,请重新再来一次/呲牙";
 					}
 				}else{
 					contentStr = "微信君get不到哇~";

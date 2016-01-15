@@ -16,6 +16,7 @@
    	  		<th>节目结束时间</th>
    	  		<th>#</th>
    	  		<th>#</th>
+   	  		<th>#</th>
    	  	</tr>
 	</thead>
    	<tbody>
@@ -25,6 +26,7 @@
 			<td ><c:out value="${p.activeName}"></c:out></td>
 			<td >${p.begTime}</td>
 			<td >${p.endTime}</td>
+			<td><a href="<%=basePath%>admin/active/list/active-create.od?act=beg&activeIndex=${p.activeIndex}">开始</a></td>
 			<td><a href="<%=basePath%>admin/active/add/active-create.od?act=pre&activeIndex=${p.activeIndex}">编辑</a></td>
 			<td><a href="<%=basePath%>admin/active/list/active-create.od?act=drop&activeIndex=${p.activeIndex}">结束</a></td>
 	  	</tr>

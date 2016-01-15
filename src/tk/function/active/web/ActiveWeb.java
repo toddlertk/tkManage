@@ -59,6 +59,12 @@ public class ActiveWeb extends BasePage{
 				active.setEndTime(new Timestamp(new Date().getTime()));
 				HibernateTemplateExt.getInstance().update(active);
 				HibernateTemplateExt.getInstance().flush();
+			}else if(act.equals("beg")){
+				String activeIndex = requestEntry.getParameter("activeIndex");
+				WxActive active = HibernateTemplateExt.getInstance().get(WxActive.class, Integer.valueOf(activeIndex));
+				active.setBegTime(new Timestamp(new Date().getTime()));
+				HibernateTemplateExt.getInstance().update(active);
+				HibernateTemplateExt.getInstance().flush();
 			}
 		}
 		List <?> list = HibernateTemplateExt.getInstance().find(new SQL("from WxActive"));
