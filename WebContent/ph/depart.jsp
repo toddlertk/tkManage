@@ -96,7 +96,7 @@ function submitForm(){
         </div>
         <div class="form_ctrl form_select" id="9" title="性别">
             <label class="ctrl_title">部门</label>
-            <select name="departmentId" num="1"><option value="#">--请选择--</option>
+            <select name="departmentId" num="1" id="departmentId"><option value="#">--请选择--</option>
 				<c:forEach var="p" items="${list}">
 					<option value="${p.departmentId }">${p.departmentName}</option>
 				</c:forEach>

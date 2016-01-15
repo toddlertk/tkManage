@@ -4,8 +4,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 
 import tk.core.db.SQL;
@@ -22,7 +24,7 @@ public class TextDuleService {
 	private static TextDuleService _instance = null;
 	
 	private static Map<String , DepartmentUser> mapDepart = new HashMap<String , DepartmentUser>();
-	private static Map<Integer , WxActive> mapActive = new HashMap<Integer , WxActive>();
+	private static Map<Integer , WxActive> mapActive = new TreeMap<Integer , WxActive>();
 	
 	public static TextDuleService getInstance(){
 		if(_instance == null){
@@ -76,6 +78,26 @@ public class TextDuleService {
 				String url = "<a href=\"http://120.24.63.30/TKManage/ph/depart/tk2y-kd92h.od?openId=" + fromUserName + "\">";
 				contentStr = "微信君读不到您的信息，请" + url + "点击此处</a>进入微信与部门工号绑定~"; 
 			}else if(content.equals("cx")){
+				contentStr = "";
+				StringBuffer strbuf = new StringBuffer();
+				SQL sql = SQL.begin().sql("from WxActiveScore a where a.openId=?" , fromUserName).end();
+				List<?> list = HibernateTemplateExt.getInstance().find(sql);
+				Map<Integer , Integer> mapScore = new HashMap<Integer , Integer>();
+				if(list != null && list.size() > 0){
+					for(Object obj : list){
+						WxActiveScore score = (WxActiveScore)obj;
+						mapScore.put(score.getActiveIndex(), score.getScore());
+					}
+				}
+				for(Iterator<WxActive> it = mapActive.values().iterator() ; it.hasNext() ;){
+					WxActive active = it.next();
+					strbuf.append(active.getActiveIndex() + ":" + active.getActiveName());
+					if(mapScore.containsKey(active.getActiveIndex())){
+						strbuf.append(";投票:" + mapScore.get(active.getActiveIndex()));
+					}
+					strbuf.append("\n");
+				}
+				contentStr = strbuf.toString();
 				
 			}else{
 				String []s = content.split("#");
@@ -83,7 +105,7 @@ public class TextDuleService {
 					try{
 						WxActive active = mapActive.get(Integer.valueOf(s[0]));
 						if(active == null){
-							contentStr = "微信君get不到这个互动~,请检查一下活动ID):!-";
+							contentStr = "微信君get不到这个互动~,请检查一下活动ID/玫瑰";
 						}
 						WxActiveScore score = new WxActiveScore();
 						SQL sql = SQL.begin().sql("from WxActiveScore a where a.activeIndex=? and a.openId=?" ,s[0] , fromUserName).end();
@@ -106,7 +128,7 @@ public class TextDuleService {
 							score.setScoreText(content);
 							HibernateTemplateExt.getInstance().save(score);
 						}
-						contentStr = "恭喜，投票成功！\n投票活动：" + active.getActiveName() + "\n投票分数：" + score.getScore();
+						contentStr = "投票成功！\n节目名称：" + active.getActiveName() + "\n投票分数：" + score.getScore();
 					}catch(Exception e){
 						e.printStackTrace();
 						contentStr = "微信君get不到哇~,请重新再来一次):-";

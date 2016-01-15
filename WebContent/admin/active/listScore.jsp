@@ -18,7 +18,7 @@
    	  	</tr>
 	</thead>
    	<tbody>
-   	<c:forEach var="p" items="${list}">
+   	<c:forEach var="p" items="${pageData}">
       	<tr>
       		<td >${p[2].activeName}"</td>
       		<td >${p[1].userName}"</td>
@@ -30,3 +30,4 @@
    	</tbody>
 </table>
 </div>
+<%@ include file="/basepage/pager.jsp"%>
