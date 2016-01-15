@@ -4,11 +4,11 @@ INSERT INTO sm_module_category(MODULE_CATEGORY_KEY,MODULE_CATEGORY_NAME,SORT,ICO
 COMMIT;
 
 INSERT INTO sm_module(module_key,module_category_key,module_name,url,auth_key,sort)
-	VALUES('DEPART_CONF','DEPART','配置','admin/depart/list/tk2y-kd92h.od','tk2y',1);
+	VALUES('DEPART_CON','DEPART','配置','admin/depart/list/tk2y-kd92h.od','tk2y',1);
 COMMIT;
 
 INSERT INTO sm_function(function_key,module_key,FUNCTION_NAME,AUTH_KEY,sort)
-	VALUES('NEW_DEPART_CONF','DEPART_CONF','新建','kd92h',0);
+	VALUES('NEW_DEPART_CONF','DEPART_CON','新建','kd92h',0);
 COMMIT;
 
 INSERT INTO SM_DEPARTMENT VALUE('1000001' , '系统部');

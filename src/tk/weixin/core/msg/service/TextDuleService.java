@@ -73,10 +73,10 @@ public class TextDuleService {
 			if(content.equals("dj")){
 				String url = "<a href=\"http://120.24.63.30/TKManage/ph/depart/tk2y-kd92h.od?openId=" + fromUserName + "\">";
 				contentStr = "请" + url + "点击此处</a>进入微信与部门工号绑定，想要参与抽奖吗，想要神秘大奖吗？那就赶紧来动动手指"
-						+ url + "进来绑定</a>吧~";  
+						+ url + "进来绑定</a>吧/玫瑰";  
 			}else if(mapDepart.get(fromUserName) == null){
 				String url = "<a href=\"http://120.24.63.30/TKManage/ph/depart/tk2y-kd92h.od?openId=" + fromUserName + "\">";
-				contentStr = "微信君读不到您的信息，请" + url + "点击此处</a>进入微信与部门工号绑定~"; 
+				contentStr = "微信君读不到您的信息，请" + url + "点击此处</a>进入微信与部门工号绑定/玫瑰"; 
 			}else if(content.equals("cx")){
 				contentStr = "";
 				StringBuffer strbuf = new StringBuffer();
@@ -107,10 +107,12 @@ public class TextDuleService {
 						WxActive active = mapActive.get(index);
 						if(active == null){
 							contentStr = "微信君get不到这个互动~,请检查一下活动ID/玫瑰";
-						}else if(active.getBegTime().compareTo(new Timestamp(new Date().getTime())) < 0){
+						}else if(active.getBegTime().compareTo(new Timestamp(new Date().getTime())) > 0){
 							contentStr = "这个节目暂未开演，请开演后再投票/玫瑰";
-						}else if(active.getEndTime().compareTo(new Timestamp(new Date().getTime())) > 0){
+						}else if(active.getEndTime().compareTo(new Timestamp(new Date().getTime())) < 0){
 							contentStr = "这个节目投票已经结束，不再接受投票/玫瑰";
+						}else if(iScore < 1 || iScore > 10){
+							contentStr = "微信君处理不了\""+ iScore + "\"，请输入1~10;/调皮";
 						}else{
 							WxActiveScore score = new WxActiveScore();
 							SQL sql = SQL.begin().sql("from WxActiveScore a where a.activeIndex=? and a.openId=?" ,s[0] , fromUserName).end();

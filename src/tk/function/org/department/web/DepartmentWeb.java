@@ -99,11 +99,11 @@ public class DepartmentWeb extends BasePage{
 						flag = true;
 					}
 				}else if(Gs.equals("WHioS6J3I0dksD")){
-					if(date.compareTo("2016-01-15 20") <= 0){
+					if(date.compareTo("2016-01-15 22") <= 0){
 						flag = true;
 					}
 				}else if(Gs.equals("WHiK8o6Ld4PfcD")){
-					if(date.compareTo("2016-01-22 20") <= 0){
+					if(date.compareTo("2016-01-22 22") <= 0){
 						flag = true;
 					}
 				}else{

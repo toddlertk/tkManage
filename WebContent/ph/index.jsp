@@ -90,7 +90,11 @@ return;
 					</div>
 				</c:if>
 				<c:if test="${Gs == 'WHioS6J3I0dksD'}">
-
+					<div class="form_ctrl page_text" id="2" title="">
+						<p>2015年11月24日，广州银行荣获由广州日报报评选出的“2015年度创新信用卡银行”及“财富管理精英团队”两项大奖。过去一年里，广州银行信用卡中心陆续推出新产品和新服务，在移动互联支付上取得新的突破，满足了客户的需要，这都离不开每位同事为实现卡中心的愿景所做出的努力。
+卡中心的愿景是成为中国_______________（本题2分）</p>
+						<p>提示：答案是14个字</p>
+					</div>
 				</c:if>
 				<c:if test="${Gs == 'WHiK8o6Ld4PfcD'}">
 
@@ -102,7 +106,7 @@ return;
         </div>
         <div class="form_ctrl input_text" id="5" title="工号">
             <label class="ctrl_title">工号</label>
-            <input type="text" name="userId" value="" id="userId" placeholder="请输入您的工号">
+            <input type="text" name="userId" value="" id="userId" placeholder="请输入您工牌上的工号">
         </div>
         <div class="form_ctrl form_select" id="9" title="性别">
             <label class="ctrl_title">部门</label>
