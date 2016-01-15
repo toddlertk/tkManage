@@ -107,9 +107,9 @@ public class TextDuleService {
 						WxActive active = mapActive.get(index);
 						if(active == null){
 							contentStr = "微信君get不到这个互动~,请检查一下活动ID/玫瑰";
-						}else if(active.getBegTime().compareTo(new Date()) < 0){
+						}else if(active.getBegTime().compareTo(new Timestamp(new Date().getTime())) < 0){
 							contentStr = "这个节目暂未开演，请开演后再投票/玫瑰";
-						}else if(active.getEndTime().compareTo(new Date()) > 0){
+						}else if(active.getEndTime().compareTo(new Timestamp(new Date().getTime())) > 0){
 							contentStr = "这个节目投票已经结束，不再接受投票/玫瑰";
 						}else{
 							WxActiveScore score = new WxActiveScore();
