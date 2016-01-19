@@ -8,6 +8,7 @@ import java.util.List;
 
 import tk.core.db.SQL;
 import tk.core.db.template.HibernateTemplateExt;
+import tk.core.db.template.JdbcTemplateExt;
 import tk.core.web.BasePage;
 import tk.core.web.RequestEntry;
 import tk.core.web.ResponseResult;
@@ -76,6 +77,42 @@ public class ActiveWeb extends BasePage{
 	}
 	
 	public ResponseResult read(RequestEntry requestEntry) {
+		String act = requestEntry.getParameter("act");
+		if(!StringUtils.isNullOrEmpty(act)){
+			if(act.equals("detail")){
+
+				String activeIndex = requestEntry.getParameter("activeIndex");
+				SQL sql = SQL.begin().sql("SELECT ACT_.ACTIVE_INDEX,ACT_.ACTIVE_NAME,COUNT(0) AS NUM ,SUM(ACTS.SCORE) AS TOTAL,"
+						+ " SUM(ACTS.SCORE)/COUNT(0) AS AVG , DEP_.DEPARTMENT_NAME "
+						+ " FROM wx_active ACT_ , wx_active_score ACTS ,wx_department_user DEPU , sm_department DEP_ "
+						+ " WHERE ACT_.ACTIVE_INDEX=ACTS.ACTIVE_INDEX AND ACTS.OPEN_ID=DEPU.OPEN_ID "
+						+ "AND DEP_.DEPARTMENT_ID=ACTS.DEPARTMENT_ID ")
+						.sql(" and ACT_.ACTIVE_INDEX = ? " , activeIndex)
+						.sql(" GROUP BY ACT_.ACTIVE_INDEX,ACT_.ACTIVE_NAME,DEP_.DEPARTMENT_NAME  ")
+						.sql("ORDER BY ACT_.ACTIVE_INDEX ASC ").end();
+
+				List<?> list = JdbcTemplateExt.getInstance().find(sql);
+				requestEntry.setAttribute("list", list);
+				return null;
+			}else if(act.equals("result")){
+
+				SQL sql = SQL.begin().sql("SELECT ACTIVE_INDEX,ACTIVE_NAME,SUM(AVG) AS AVG,SUM(NUM) AS NUM ,SUM(TOTAL) AS TOTAL  "
+						+ " FROM ( "
+						+ " SELECT ACT_.ACTIVE_INDEX,ACT_.ACTIVE_NAME,COUNT(0) AS NUM ,SUM(ACTS.SCORE) AS TOTAL,DEP_.DEPARTMENT_NAME,SUM(ACTS.SCORE)/COUNT(0) AS AVG "
+						+ " FROM wx_active ACT_ , wx_active_score ACTS ,wx_department_user DEPU , sm_department DEP_ "
+						+ " WHERE ACT_.ACTIVE_INDEX=ACTS.ACTIVE_INDEX AND ACTS.OPEN_ID=DEPU.OPEN_ID AND DEP_.DEPARTMENT_ID=ACTS.DEPARTMENT_ID "
+						+ " GROUP BY ACT_.ACTIVE_INDEX,ACT_.ACTIVE_NAME,DEP_.DEPARTMENT_NAME ) AS T "
+						+ " GROUP BY ACTIVE_INDEX,ACTIVE_NAME "
+						+ " ORDER BY ACTIVE_INDEX ASC").end();
+
+				List<?> list = JdbcTemplateExt.getInstance().find(sql);
+				requestEntry.setAttribute("list", list);
+				return null;
+			}
+			
+			return null;
+		}
+		
 		SQL sql = SQL.begin().sql("select w,d,a from WxActiveScore w ,DepartmentUser d ,WxActive a")
 				.sql(" where d.openId=w.openId and a.activeIndex=w.activeIndex order by w.createTime desc").end();
 

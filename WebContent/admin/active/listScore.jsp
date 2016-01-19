@@ -6,6 +6,7 @@
 <div class="ui two column relaxed grid">
 	<div class="column">
 		<a href="<%=basePath%>admin/active/result/active-read.od?act=result" class="green ui button"><span>查看统计结果</span></a>
+		<button type="button" onclick="javascript:window.history.go(-1);" class="ui small button">返回</button>
 	</div>
 	<table class="ui celled table">
    	<thead>
@@ -20,11 +21,11 @@
    	<tbody>
    	<c:forEach var="p" items="${pageData}">
       	<tr>
-      		<td >${p[2].activeName}"</td>
-      		<td >${p[1].userName}"</td>
-      		<td >${p[0].score}"</td>
-      		<td >${p[0].scoreText}"</td>
-      		<td >${p[0].createTime}"</td>
+      		<td >${p[2].activeName}</td>
+      		<td >${p[1].userName}</td>
+      		<td >${p[0].score}</td>
+      		<td >${p[0].scoreText}</td>
+      		<td >${p[0].createTime}</td>
 	  	</tr>
 	</c:forEach>
    	</tbody>
