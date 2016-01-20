@@ -70,14 +70,14 @@ public class TextDuleService {
 		String contentStr = null;
 		
 		if(null!=content&&!content.equals("")){  
-			if(content.equals("dj")){
+			if(content.toUpperCase().equals("TP")){
 				String url = "<a href=\"http://120.24.63.30/TKManage/ph/depart/tk2y-kd92h.od?openId=" + fromUserName + "\">";
 				contentStr = "请" + url + "点击此处</a>进入微信与部门工号绑定，想要参与抽奖吗，想要神秘大奖吗？那就赶紧来动动手指"
 						+ url + "进来绑定</a>吧/玫瑰";  
 			}else if(mapDepart.get(fromUserName) == null){
 				String url = "<a href=\"http://120.24.63.30/TKManage/ph/depart/tk2y-kd92h.od?openId=" + fromUserName + "\">";
 				contentStr = "微信君读不到您的信息，请" + url + "点击此处</a>进入微信与部门工号绑定/玫瑰"; 
-			}else if(content.equals("cx")){
+			}else if(content.toUpperCase().equals("CX")){
 				contentStr = "";
 				StringBuffer strbuf = new StringBuffer();
 				SQL sql = SQL.begin().sql("from WxActiveScore a where a.openId=?" , fromUserName).end();
@@ -93,7 +93,9 @@ public class TextDuleService {
 					WxActive active = it.next();
 					strbuf.append(active.getActiveIndex() + ":" + active.getActiveName());
 					if(mapScore.containsKey(active.getActiveIndex())){
-						strbuf.append(";投票:" + mapScore.get(active.getActiveIndex()));
+						strbuf.append("(已投:" + mapScore.get(active.getActiveIndex()) + "分);");
+					}else{
+						strbuf.append("(暂未投票);");
 					}
 					strbuf.append("\n");
 				}
@@ -106,7 +108,7 @@ public class TextDuleService {
 						int index = Integer.valueOf(s[0]) , iScore = Integer.valueOf(s[1]);
 						WxActive active = mapActive.get(index);
 						if(active == null){
-							contentStr = "微信君get不到这个互动~,请检查一下活动ID/玫瑰";
+							contentStr = "没有这个活动ID,请检查一下活动ID/玫瑰";
 						}else if(active.getBegTime().compareTo(new Timestamp(new Date().getTime())) > 0){
 							contentStr = "这个节目暂未开演，请开演后再投票/玫瑰";
 						}else if(active.getEndTime().compareTo(new Timestamp(new Date().getTime())) < 0){
@@ -138,9 +140,9 @@ public class TextDuleService {
 							contentStr = "投票成功！\n节目名称：" + active.getActiveName() + "\n投票分数：" + score.getScore();
 						}
 						
-					}catch(Exception e){
+					}catch(NumberFormatException e){
 						e.printStackTrace();
-						contentStr = "微信君get不到哇~,请重新再来一次/呲牙";
+						contentStr = "投票节目序号或者分数不对，请按 节目编号#分数(1-10) 格式回复哈！";
 					}
 				}else{
 					contentStr = "微信君get不到哇~";
