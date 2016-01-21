@@ -145,7 +145,8 @@ public class TextDuleService {
 						contentStr = "投票节目序号或者分数不对，请按 节目编号#分数(1-10) 格式回复哈！";
 					}
 				}else{
-					contentStr = "微信君get不到哇~";
+					//contentStr = "微信君get不到哇~";
+					return null;
 				}
 				 
 			}

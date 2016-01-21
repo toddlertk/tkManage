@@ -68,10 +68,9 @@ public class DepartmentWeb extends BasePage{
 		if(list1.size() > 0){
 			du = (DepartmentUser) list1.get(0);
 		}else{
-			SQL sql = SQL.begin().sql("from SmDepartmentUser o where o.userId=? " , userId)
-					.sql(" and departmentId=? " , departmentId).end();
-			list1 = HibernateTemplateExt.getInstance().find(sql);
-			if(list1 == null || list1.size() < 1){
+			SQL sql = SQL.begin().sql("from SmDepartmentUser u where u.userId=? and u.departmentId=?" ,userId , departmentId).end();
+			List <?>  list = HibernateTemplateExt.getInstance().find(sql);
+			if(list == null || list.size() < 1){
 				requestEntry.setAttribute("result", "FAIL-输入岗位与部门不匹配，请确认！");
 				return null;
 			}

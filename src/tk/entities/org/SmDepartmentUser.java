@@ -1,4 +1,4 @@
-package tk.entities;
+package tk.entities.org;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +35,7 @@ public class SmDepartmentUser implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	@Column(name = "DEPARTMENT_ID", nullable = false, length = 20)
+	@Column(name = "DEPARTMENT_ID", nullable = false)
 	public String getDepartmentId() {
 		return this.departmentId;
 	}

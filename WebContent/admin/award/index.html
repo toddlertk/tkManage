@@ -1,9 +1,3 @@
-﻿<%@include file="/basepage/response.jsp" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String serverPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -48,23 +42,7 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             /*margin-left: -370px;*/
             z-index: 9;
         }
-		.num_box1 {
-            height: 450px;
-            width: 780px;
-            position: absolute;
-            left: 5%;
-            top: 340px;
-            margin-left: -25px;
-            z-index: 5;
-        }
-        
-        /* #t1{
-        	position:relative;
-            left: 5%;
-            top: 350px;
-            z-index: 10;
-        } */
-        
+
         .num_box {
             height: 450px;
             width: 780px;
@@ -72,7 +50,7 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             left: 5%;
             top: 350px;
             /*margin-left: -400px;*/
-            z-index: 18;
+            z-index: 8;
             overflow: hidden;
             text-align: center;
         }
@@ -81,19 +59,6 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             background: url(images/num.png) top center repeat-y;
             width: 155px;
             height: 265px;
-            float: left;
-            margin-right: 0;
-        }
-        .num1 {
-            background: url(images/single.jpg) left center;
-            background-size: 100% 100%;
-            width: 155px;
-            height: 265px; 
-            /* background-size: 100% 100%;
-           	width: 68%;
-            height: 78%; 
-           	width: 100% ;
-            height: 100% ; */ 
             float: left;
             margin-right: 0;
         }
@@ -125,15 +90,6 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
     <div class="main">
         <div id="res" style="text-align:center;color:#fff;padding-top:15px;"></div>
         <div class="num_mask"></div>
-        <div class="num_box1">
-            <div>
-           	 	<div class="num1"></div>
-           	 	<div class="num1"></div>
-           	 	<div class="num1"></div>
-           	 	<div class="num1"></div>
-           	 	<div class="num1"></div>
-            </div>
-        </div>
         <div class="num_box">
             <!--<div id="mb"><img src="images/2.png"> </div>-->
             <div id="t1">
@@ -189,22 +145,66 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
 <!--结果报告-->
 <div id="kb">
     <table>
-			<thead>
-				<tr>
-					<th>奖项</th>
-					<th>姓名</th>
-					<th>工号</th>
-					<th>部门</th>
-				</tr>
-			</thead>
-			<tbody id="tb">
-				<tr>
-					<td>一等奖</td>
-					<td>范永胜</td>
-					<td>02200</td>
-					<td>系统部</td>
-				</tr>
-			</tbody>
+        <tr>
+            <th>奖项</th>
+            <th>姓名</th>
+            <th>工号</th>
+            <th>部门</th>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
+        <tr>
+            <td>一等奖</td>
+            <td>范永胜</td>
+            <td>02200</td>
+            <td>系统部</td>
+        </tr>
     </table>
 </div>
 </body>
@@ -214,8 +214,10 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
         var w = $(document).width();
         var h = $(document).height();
         $('body').width(w).height(h);
+
     }
     init();
+
 
     function numRand() {
         var x = 99999; //上限
@@ -225,7 +227,6 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
     }
     var k=0;
     var isBegin = false;
-    var txt , s , num_arr ; var second = 5 , first = 3 , special = 1;
     $(function () {
         var u = 265;
         $('.btn').click(function () {
@@ -234,9 +235,15 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             if (isBegin) return false;
             isBegin = true;
             $("#t1 .num").css('backgroundPositionY', 0);
+            var result = numRand();
+
+            var num_arr = (result + '').split('');
+
             var tttt=setInterval(a,1);
+
             function a(){
                 $("#t1 .num:eq(0)").css('backgroundPositionY',k+'px');
+
                 setTimeout(a,200);
                 setTimeout(b,400);
                 setTimeout(c,600);
@@ -244,17 +251,24 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
                 function a(){
                     $("#t1 .num:eq(1)").css('backgroundPositionY',k+200+'px');
                 }
+
                 function b(){
                     $("#t1 .num:eq(2)").css('backgroundPositionY',k+400+'px');
                 }
+
                 function c(){
                     $("#t1 .num:eq(3)").css('backgroundPositionY',k+600+'px');
                 }
+
+
                 function d(){
                     $("#t1 .num:eq(4)").css('backgroundPositionY',k+800+'px');
                 }
+
                 k+=10;
             }
+
+
 
             function stop(){
                 $('#t1').hide();
@@ -265,47 +279,50 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             var run={
                 a:function(){
                     $(".num").each(function (index) {
+
+
+
+
+//                        var _num = $(this);
+//                        setTimeout(function () {
+//                            _num.animate({
+//                                backgroundPositionY: 265*10
+//                            }, {
+//                                duration: 10000,
+//                                easing: "easeInOutCirc",
+//                                complete: function () {
+//                                    if (index == 3) isBegin = false;
+//                                }
+//                            });
+//                        }, 0);
                     });
                 },
 
+
                 b:function(){
-           			$.post('<%=basePath%>admin/award/ajaxpage/award-doAward.od?act=doAward', {}, function (data) {
-						s = data.replace(/\r\n/g,'').split(',');
-						var award ;
-						if(second > 0){
-							award = '二等奖';
-							second = second - 1;
-						}else if(first > 0){
-							award = '一等奖';
-							first = first - 1;
-						}else {
-							award = "特等奖";
-						}
-						txt = "<tr><td>" + award + "</td><td>" + s[0] + "</td><td>" + s[1] + "</td><td>" + s[2] + "</td></tr>";
-           				num_arr = (s[1] + '').split('');
-                    	setTimeout(stop,3000);
-                    	$("#t2 .num").each(function (index) {
-                       		var _num = $(this);
-                        	setTimeout(function () {
-                            	_num.animate({
-                                	backgroundPositionY: 265*60-(265*num_arr[index])
-                            	}, {
-                                	duration: 10000,
-                                	easing: "easeInOutCirc",
-                                	complete: function () {
-                                   		if (index == 4) {
-	                                    	$("#tb").append(txt);
-                                    		isBegin = false;
-                                    	}
-                                	}
-                           		});
-                        	}, index*100);
-                    	});
-           			});
+                    setTimeout(stop,3000);
+                    $("#t2 .num").each(function (index) {
+                        var _num = $(this);
+                        setTimeout(function () {
+                            _num.animate({
+                                backgroundPositionY: 265*60-(265*num_arr[index])
+                            }, {
+                                duration: 10000,
+                                easing: "easeInOutCirc",
+                                complete: function () {
+                                    if (index == 3) isBegin = false;
+                                }
+                            });
+                        }, index*100);
+                    });
                 }
             }
             run.a();
             setTimeout(run.b,2000);
+//            $.post('Server.aspx', {id: idValue}, function (data) {
+//
+//            });
+
         });
     });
 </script>

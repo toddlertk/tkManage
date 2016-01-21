@@ -36,6 +36,12 @@ public class AwardService {
 	}
 	
 	public WxUserScore doAward(){
+		SQL sql = SQL.begin().sql("from WxUserScore o where o.isValid='Y' order by o.scoreId desc ").end();
+		listScore = (List<WxUserScore>) HibernateTemplateExt.getInstance().find(sql);
+		totalScore = 0;
+		for(WxUserScore score : listScore){
+			totalScore += score.getScore();
+		}	
 		int it = new Random().nextInt(totalScore * listScore.size());
 		long lt = new Date().getTime() , lt1 = (lt  & it >> 2);
 		int awardScore = (int)(lt1 % totalScore);

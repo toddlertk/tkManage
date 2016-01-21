@@ -76,35 +76,31 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
 </head>
 <body>
 
-<div class="ui inverted menu">
-      <a href="#" class="header item">
-        <img class="logo" src="<%=basePath %>/UI/images/logo.png">
-        TKManage
-      </a>
+	<div class="ui inverted menu">
+		<a href="#" class="header item"> <img class="logo"
+			src="<%=basePath%>/UI/images/logo.png"> TKManage
+		</a>
 		<c:forEach items="${categoryMap}" var="menu" varStatus="status">
-			<div class="ui dropdown item">
-				${menu.value.moduleCategoryName} <i class="dropdown icon"></i>
+			<div class="ui dropdown item">${menu.value.moduleCategoryName} <i class="dropdown icon"></i>
 				<div class="menu">
 					<c:forEach items="${moduleMap[menu.key]}" var="subMenu">
-
-						<div class="item"
-							onclick="javascript:clickMenu('<%=basePath %>${subMenu.url}')">
-							${subMenu.moduleName}</div>
+						<div class="item"onclick="javascript:clickMenu('<%=basePath %>${subMenu.url}')">
+							${subMenu.moduleName}
+						</div>
 					</c:forEach>
 				</div>
 			</div>
 		</c:forEach>
 		<div class="right menu">
-    <div class="item">
-      <div class="ui action left icon input">
-        <i class="search icon"></i>
-        <input type="text" placeholder="Search">
-        <button class="ui button">Submit</button>
-      </div>
-    </div>
-    <a class="item">Link</a>
-  </div>
-</div>
+			<div class="item">
+				<div class="ui action left icon input">
+					<i class="search icon"></i> <input type="text" placeholder="Search">
+					<button class="ui button">Submit</button>
+				</div>
+			</div>
+			<a class="item" href="#">Link</a>
+		</div>
+	</div>
 	<div class="article">
 		<div class="ui main text container">
 			<iframe style="border: 0px; width: 100%;" frameBorder="0"

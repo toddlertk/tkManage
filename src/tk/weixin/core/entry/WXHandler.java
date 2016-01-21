@@ -131,7 +131,9 @@ public class WXHandler {
 			String MsgType = root.elementTextTrim("MsgType");
 			AbstractMsgHandler handler = MsgHandlerFactory.getInstance().getMsgHandler(MsgType);
 			if(handler != null){
-				this.print(handler.recv(root)); 
+				String str = handler.recv(root);
+				if(str != null)
+					this.print(handler.recv(root)); 
 			}
 		}else {  
 			this.print(""); 

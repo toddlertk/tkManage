@@ -12,8 +12,17 @@ public class AwardWeb extends BasePage{
 	public ResponseResult doAward(RequestEntry requestEntry){
 		String act = requestEntry.getParameter("act");
 		if(!StringUtils.isNullOrEmpty(act)){
-			WxUserScore score = AwardService.getInstance().doAward();
-			requestEntry.setAttribute("result", score.getUserId());
+			try{
+				WxUserScore score = AwardService.getInstance().doAward();
+				if(score == null)
+					requestEntry.setAttribute("result", "");
+				else{
+					String s = score.getUserName() + "," + score.getUserId() + "," + score.getDepartmentName();
+					requestEntry.setAttribute("result", s);
+				}
+			}catch(Exception e){
+				requestEntry.setAttribute("result", "");
+			}
 		}
 		return null;
 		
