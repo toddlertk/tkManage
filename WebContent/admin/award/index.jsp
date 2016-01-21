@@ -54,7 +54,7 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             position: absolute;
             left: 5%;
             top: 340px;
-            margin-left: -25px;
+            margin-left: 0;
             z-index: 5;
         }
         
@@ -85,8 +85,9 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             margin-right: 0;
         }
         .num1 {
-            background: url(images/single.jpg) left center;
-            background-size: 100% 100%;
+            background: url(images/single.jpg) top center repeat;
+            background-size:130% 120%;
+            /* background-size: 155px 265px; */
             width: 155px;
             height: 265px; 
             /* background-size: 100% 100%;
@@ -198,12 +199,6 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
 				</tr>
 			</thead>
 			<tbody id="tb">
-				<tr>
-					<td>一等奖</td>
-					<td>范永胜</td>
-					<td>02200</td>
-					<td>系统部</td>
-				</tr>
 			</tbody>
     </table>
 </div>
