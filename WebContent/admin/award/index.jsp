@@ -54,7 +54,7 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             position: absolute;
             left: 5%;
             top: 340px;
-            margin-left: 0;
+            margin-top: 0;
             z-index: 5;
         }
         
@@ -85,11 +85,11 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
             margin-right: 0;
         }
         .num1 {
-            background: url(images/single.jpg) top center repeat;
-            background-size:130% 120%;
+            background: url(images/single1.jpg) -20px -23px no-repeat;
+            background-size:130% 112%; 
             /* background-size: 155px 265px; */
             width: 155px;
-            height: 265px; 
+            height: 275px; 
             /* background-size: 100% 100%;
            	width: 68%;
             height: 78%; 
@@ -126,7 +126,7 @@ String serverPath = request.getScheme()+"://"+request.getServerName()+":"+reques
     <div class="main">
         <div id="res" style="text-align:center;color:#fff;padding-top:15px;"></div>
         <div class="num_mask"></div>
-        <div class="num_box1">
+        <div class="num_box">
             <div>
            	 	<div class="num1"></div>
            	 	<div class="num1"></div>
