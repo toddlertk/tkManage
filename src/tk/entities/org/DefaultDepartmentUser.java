@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sm_department_user")
-public class SmDepartmentUser implements java.io.Serializable {
+public class DefaultDepartmentUser implements java.io.Serializable {
 
 	// Fields
 
@@ -20,13 +20,12 @@ public class SmDepartmentUser implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public SmDepartmentUser() {
+	public DefaultDepartmentUser() {
 	}
 
 	// Property accessors
 	@Id
 	@Column(name = "USER_ID", unique = true, nullable = false)
-
 	public String getUserId() {
 		return userId;
 	}

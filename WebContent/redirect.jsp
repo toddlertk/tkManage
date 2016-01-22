@@ -10,6 +10,7 @@
         }else if(result == "NoMsg"){
     		window.location.href = "<%=basePath%>" + url;
         }else {
+        	alert(result);
         	window.history.go(-1);
         }
     });

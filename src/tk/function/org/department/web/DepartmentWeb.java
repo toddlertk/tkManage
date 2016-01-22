@@ -63,12 +63,13 @@ public class DepartmentWeb extends BasePage{
 		String departmentId = requestEntry.getParameter("departmentId");
 		String userId = requestEntry.getParameter("userId");
 		String userName = requestEntry.getParameter("userName");
-		DepartmentUser du = null;
+		DepartmentUser du = new DepartmentUser();
 		List <?> list1 = HibernateTemplateExt.getInstance().find(new SQL("from DepartmentUser o where o.openId=?" , openId));
 		if(list1.size() > 0){
 			du = (DepartmentUser) list1.get(0);
 		}else{
-			SQL sql = SQL.begin().sql("from SmDepartmentUser u where u.userId=? and u.departmentId=?" ,userId , departmentId).end();
+			SQL sql = SQL.begin().sql("select o from DefaultDepartmentUser o ")
+					.sql(" where o.userId=? and o.departmentId=? " , userId , departmentId ).end();
 			List <?>  list = HibernateTemplateExt.getInstance().find(sql);
 			if(list == null || list.size() < 1){
 				requestEntry.setAttribute("result", "FAIL-输入岗位与部门不匹配，请确认！");
@@ -79,7 +80,7 @@ public class DepartmentWeb extends BasePage{
 		du.setOpenId(openId);
 		du.setUserName(userName);
 		du.setDepartmentId(departmentId);
-		HibernateTemplateExt.getInstance().save(du);
+		HibernateTemplateExt.getInstance().saveOrUpdate(du);
 		HibernateTemplateExt.getInstance().flush();
 		TextDuleService.getInstance().updateDepart(du);
 		requestEntry.setAttribute("result", "SUCCESS");
